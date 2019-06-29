@@ -1,0 +1,3 @@
+rootProject.name = 'SenderosReactNative'
+
+include ':app'
