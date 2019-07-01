@@ -13,6 +13,9 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import com.airbnb.android.react.maps.MapsPackage;
+
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -26,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new AsyncStoragePackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new MapsPackage()
       );
     }
 
@@ -46,4 +50,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
+
 }
+
