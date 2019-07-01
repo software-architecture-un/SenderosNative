@@ -1,8 +1,8 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Home from './views/Home.js'
-import Login from './views/Login.js'
-import Signup from './views/Signup.js'
-import Main from './views/Main.js'
+import Home from './src/screens/Home.js'
+import Login from './src/screens/Login.js'
+import Signup from './src/screens/Signup.js'
+import Main from './src/screens/Main.js'
 
 const RootStack = createStackNavigator({
   Home: {
