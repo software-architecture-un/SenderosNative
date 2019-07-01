@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {TextInput, StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
+import GraphQLIP from '../connection/GraphQLIP';
 
 const userInfo = {email: "dacherreragu@unal.edu.co", password: "123456"};
 
@@ -41,16 +42,51 @@ export default class Login extends Component {
   }
 
   _signin = async () => {
-    console.log("Logged coroto:", AsyncStorage.getItem('logged'));
+    const query = `
+          mutation {
+              signIn(user: {
+                  email: "${this.state.email}"
+                  password: "${this.state.password}"
+              }) {
+                  content
+                  message 
+                  status
+              } 
+          }
+      `;
 
-    if(this.state.email === "" || this.state.password === "") {
-      alert('Ningún campo puede estar vacío')
-    } else if(userInfo.email === this.state.email && userInfo.password === this.state.password) {
-      await AsyncStorage.setItem('logged', '1')
-      this.props.navigation.replace('Main')
-    } else {
-      alert('Correo electrónico o contraseña incorrectos')
-    }
+    console.log("Query: ", query)
+
+      const url = GraphQLIP;
+      const opts = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+      };
+
+      fetch(url, opts)
+      .then(res => res.json())
+      .then(res => {
+        console.log("Prueba de lo que retorna: ", res)
+
+        if(this.state.email === "" || this.state.password === "") {
+          alert('Ningún campo puede estar vacío')
+        } else if(userInfo.email === this.state.email && userInfo.password === this.state.password &&
+           res.data.signIn != null) {
+          console.log(res.data.signIn.content);
+          //AsyncStorage.setItem(('jwt', res.data.signIn.content));
+          //AsyncStorage.setItem(('email', this.state.email));
+          //console.log("JWT Obtenido: ", AsyncStorage.getItem(jwt))
+          //this.setState({ data: res })
+          //console.log(res)
+
+          this.props.navigation.replace('Main')
+        } else {
+          alert('Correo electrónico o contraseña incorrectos')
+        }
+      })
+
+    
   }
 }
 
