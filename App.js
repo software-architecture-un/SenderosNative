@@ -4,7 +4,11 @@ import Login from './src/screens/Login.js'
 import Signup from './src/screens/Signup.js'
 import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
+import example from './src/screens/DraggableMarkers'
 const RootStack = createStackNavigator({
+  example:{
+    screen: example
+  },
   MyMap: {
     screen: MyMap
   },
