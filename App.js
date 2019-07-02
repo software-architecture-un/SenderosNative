@@ -5,11 +5,11 @@ import Signup from './src/screens/Signup.js'
 import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
 const RootStack = createStackNavigator({
-  Login: {
-    screen: Login
-  },
   MyMap: {
     screen: MyMap
+  },
+  Login: {
+    screen: Login
   },
   Home: {
     screen: Home
