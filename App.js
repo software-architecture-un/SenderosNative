@@ -7,22 +7,12 @@ import MyMap from './src/screens/Map.js'
 import example from './src/screens/DraggableMarkers'
 import header1 from './src/components/MenuHeader'
 const RootStack = createStackNavigator({
-  Main: {
-    screen: Main
-  },
-  example:{
-    screen: example
-  },
-  MyMap: {
-    screen: MyMap
+  Home: {
+    screen: Home
   },
   Login: {
     screen: Login
   },
-  Home: {
-    screen: Home
-  },
-  
   Signup: {
     screen: Signup
   },

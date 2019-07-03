@@ -69,14 +69,10 @@ export default class Login extends Component {
         >
           <Text style={styles.btnEnterText}>Iniciar sesión</Text>
         </TouchableOpacity>
-
-
-
       </View>
     );
     
   }
-
 
   _signin = async () => {
     const query = `
@@ -103,22 +99,19 @@ export default class Login extends Component {
       fetch(url, opts)
       .then(res => res.json())
       .then(res => {
-        console.log('segundo then');
-        console.log(res.data.signIn.content);
         if(this.state.email === "" || this.state.password === "") {
-          alert('Ningún campo puede estar vacío')
-        } else if( res.data.signIn !== null) {
-          // console.log(resp);
+          alert("Ningún campo puede estar vacío");
+        }
+        else if(res.data.signIn !== null) {
           this.saveToken(JSON.stringify(res.data.signIn.content));
           this.getToken();
-          
-        }else {
-          alert('Correo electrónico o contraseña incorrectos')
+        }
+        else {
+          alert("Correo electrónico o contraseña incorrectos")
         } 
-      })
-
-      .catch(function(error) {
-        throw error;
+      }) 
+      .catch((error)=>{
+        alert(error.message)
       });
   }
 }
