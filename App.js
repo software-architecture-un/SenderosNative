@@ -5,7 +5,11 @@ import Signup from './src/screens/Signup.js'
 import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
 import example from './src/screens/DraggableMarkers'
+import header1 from './src/components/MenuHeader'
 const RootStack = createStackNavigator({
+  Main: {
+    screen: Main
+  },
   example:{
     screen: example
   },
@@ -22,9 +26,7 @@ const RootStack = createStackNavigator({
   Signup: {
     screen: Signup
   },
-  Main: {
-    screen: Main
-  }
+ 
   
 });
 

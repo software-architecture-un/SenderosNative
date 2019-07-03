@@ -7,11 +7,11 @@ import PriceMarker from '../components/PriceMarker';
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
+const LATITUDE = 4.6355555555556;
+const LONGITUDE = -74.082777777778;
+const LATITUDE_DELTA = 0.025; //0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const SPACE = 0.01;
+const SPACE = 0.00001;
 
 function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    height: 400,
+    width: 400,
   },
   map: {
     ...StyleSheet.absoluteFillObject,
