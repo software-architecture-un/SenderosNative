@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TextInput, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import GraphQLIP from '../connection/GraphQLIP.js';
-import AsyncStorage from '@react-native-community/async-storage';
+import LocalStorage from '../components/LocalStorage.js'
 
 
 export default class Login extends Component {
@@ -9,37 +9,6 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state= {email:"", password:"", resp:""}
-  }
-
-  async getToken() {
-    try {
-      console.log("Buscando el token en storage");
-      const value = await AsyncStorage.getItem('jwt');
-      // this.setState({myKey: value});
-      alert(value);
-    } catch (error) {
-      console.log("Error retrieving data" + error);
-    }
-  }
-
-  async saveToken(value) {
-    try {
-      console.log('Guardando el token');
-      console.log(value);
-      await AsyncStorage.setItem('jwt', value);
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
-  }
-
-  async resetToken() {
-    try {
-      await AsyncStorage.removeItem('@jwt');
-      const value = await AsyncStorage.getItem('jwt');
-      // this.setState({myKey: value});
-    } catch (error) {
-      console.log("Error resetting data" + error);
-    }
   }
 
   render() {
@@ -103,8 +72,9 @@ export default class Login extends Component {
           alert("Ningún campo puede estar vacío");
         }
         else if(res.data.signIn !== null) {
-          this.saveToken(JSON.stringify(res.data.signIn.content));
-          this.getToken();
+          LocalStorage.saveToken(JSON.stringify(res.data.signIn.content));
+          LocalStorage.getToken();
+          this.props.navigation.navigate('Main')
         }
         else {
           alert("Correo electrónico o contraseña incorrectos")

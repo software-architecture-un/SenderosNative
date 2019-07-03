@@ -6,10 +6,9 @@ import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
 import example from './src/screens/DraggableMarkers'
 import header1 from './src/components/MenuHeader'
-const RootStack = createStackNavigator({
-  Main: {
-    screen: Main
-  },  
+import LocalStorage from './src/components/LocalStorage.js'
+
+ const RootStackWithoutSession = createStackNavigator({
   Home: {
     screen: Home
   },
@@ -19,10 +18,45 @@ const RootStack = createStackNavigator({
   Signup: {
     screen: Signup
   },
- 
-  
+  Main: {
+    screen: Main
+  },  
 });
 
-const App = createAppContainer(RootStack);
+const RootStackWithSession = createStackNavigator({
+  Main: {
+    screen: Main
+  }, 
+  Home: {
+    screen: Home
+  },
+  Login: {
+    screen: Login
+  },
+  Signup: {
+    screen: Signup
+  }, 
+}); 
+
+// var obtainedJWT = LocalStorage.getToken().then(function(value){
+//   alert(value);
+
+//   return value;
+// })
+
+//   alert(obtainedJWT);
+
+//   if(obtainedJWT === null || obtainedJWT === '') {
+//     RootStack = RootStackWithoutSession;
+//   }
+//   else {
+//     RootStack = RootStackWithSession;
+//   }
+
+RootStack = RootStackWithoutSession;
+
+let App = createAppContainer(RootStack);
 
 export default App;
+
+  
