@@ -6,6 +6,10 @@ import LocalStorage from '../components/LocalStorage.js'
 
 export default class Login extends Component {
 
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props) {
     super(props);
     this.state= {email:"", password:"", resp:""}
@@ -15,8 +19,10 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.welcome}>Iniciar sesión</Text>
+        <Text style={styles.welcome}>SENDEROS</Text>
+        <Text style={styles.welcome}>UN</Text>
 
+        <Text style={styles.labelField}>Correo electrónico</Text>
         <TextInput
           style={styles.input}
           placeholder="Correo electrónico"
@@ -24,6 +30,7 @@ export default class Login extends Component {
           value={this.state.email}
         />
 
+        <Text style={styles.labelField}>Contraseña</Text>
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
@@ -36,7 +43,14 @@ export default class Login extends Component {
           style={styles.btnEnter}
           onPress={this._signin}
         >
-          <Text style={styles.btnEnterText}>Iniciar sesión</Text>
+          <Text style={styles.btnEnterText}>Entrar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.btnBack}
+          onPress={() => this.props.navigation.navigate('Home')}
+        >
+          <Text style={styles.btnEnterText}>Volver</Text>
         </TouchableOpacity>
       </View>
     );
@@ -90,59 +104,58 @@ const styles =StyleSheet.create ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#2B303A',
+    fontFamily: 'sans-serif',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: '#D64933',
     textAlign: 'center',
     margin: 10
   },
+  labelField: {
+    fontSize: 20,
+    color: '#92DCE5',
+    textAlign: 'center',
+    marginTop: 20,
+    marginBottom: 10,
+  },
   input: {
-    margin: 15,
-    height: 40,
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 15,
     padding: 5,
-    fontSize: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#42BAF8'
+    fontSize: 20,
+    backgroundColor: '#FFFFFF',
   },
   btnEnter: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: "#42BAF8",
     alignItems: 'center',
-    marginLeft: 15,
-    marginRight: 15,
-    padding: 10
+    marginTop: 30,
+    marginBottom: 10,
+    marginLeft: 40,
+    marginRight: 40,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: "#92DCE5",
+    color: '#2B303A',
+  },
+  btnBack: {
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 10,
+    marginLeft: 40,
+    marginRight: 40,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: "#D64933",
+    color: '#2B303A',
   },
   btnEnterText: {
-    color: "#FFFFFF",
-    fontWeight: '700'
-  },
-  container: {
-    padding: 30,
-    flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  formInput: {
-    paddingLeft: 5,
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#555555",
-  },
-  formButton: {
-    borderWidth: 1,
-    borderColor: "#555555",
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    marginTop: 5,
+    color: '#2B303A',
   },
 });
