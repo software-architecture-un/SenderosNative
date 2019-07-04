@@ -25,15 +25,17 @@ export default class Login extends Component {
         <Text style={styles.labelField}>Correo electrónico</Text>
         <TextInput
           style={styles.input}
-          placeholder="Correo electrónico"
+          placeholder="Ingrese su correo electrónico"
           onChangeText={(email)=>this.setState({email})}
           value={this.state.email}
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
 
         <Text style={styles.labelField}>Contraseña</Text>
         <TextInput
           style={styles.input}
-          placeholder="Contraseña"
+          placeholder="Ingrese su contraseña"
           onChangeText={(password)=>this.setState({password})}
           value={this.state.password}
           secureTextEntry={true}
