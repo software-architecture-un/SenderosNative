@@ -1,17 +1,17 @@
 import {Component} from 'react';
+import GraphQLIP from '../connection/GraphQLIP.js';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default class LocalStorage extends Component {
     constructor(props) {
         super(props);
+        this.state = {token:""}
       }
 
     static async getToken() {
         try {
           console.log("Buscando el token en storage");
           const value = await AsyncStorage.getItem('jwt');
-          // this.setState({myKey: value});
-          //alert(value);
         
           return value;
         } catch (error) {
@@ -38,6 +38,51 @@ export default class LocalStorage extends Component {
           console.log("Error resetting data" + error);
         }
       }
+
+      static async validateToken() {
+        var token = await this.getToken()
+        //.then(value => {
+          //this.setState({token: token});     
+          console.log("Token en validate: ", token)
+
+          const query = `
+          mutation {
+            verifyToken(jwt: 
+              {
+                jwt: ${token}
+              }) {
+              content
+              message
+              status
+            }
+          }
+            `;
+
+            const url = GraphQLIP;
+            
+            const opts = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query })
+            };
+
+            fetch(url, opts)
+            .then(value => value.json())
+            .then(value => {
+              if(value.data.verifyToken !== null) {
+                console.log("Voy a enviar: ", value.data.verifyToken.content)
+                return value.data.verifyToken.content;
+              }
+              else {
+                return "No valid";
+              }
+            }) 
+            .catch((error)=>{
+              alert(error.message)
+            });
+          }
+        //)
+      //}
 
       render() {
         return null
