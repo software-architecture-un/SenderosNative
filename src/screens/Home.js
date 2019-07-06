@@ -17,7 +17,7 @@ export default class Home extends Component {
           style={styles.btnLogin}
           onPress={() => this.props.navigation.navigate('Login')}
         >
-          <Text style={styles.btnEnterText}>Iniciar Sesión</Text>
+          <Text style={styles.btnEnterText}>Iniciar sesión</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 

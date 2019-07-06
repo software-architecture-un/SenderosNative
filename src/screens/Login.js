@@ -3,7 +3,6 @@ import {TextInput, StyleSheet, Text, View, TouchableOpacity } from 'react-native
 import GraphQLIP from '../connection/GraphQLIP.js';
 import LocalStorage from '../components/LocalStorage.js'
 
-
 export default class Login extends Component {
 
   static navigationOptions = {
@@ -12,7 +11,7 @@ export default class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state= {email:"", password:"", resp:""}
+    this.state = {email:"", password:"", resp:""}
   }
 
   render() {
@@ -89,7 +88,7 @@ export default class Login extends Component {
         }
         else if(res.data.signIn !== null) {
           LocalStorage.saveToken(JSON.stringify(res.data.signIn.content));
-          LocalStorage.getToken();
+          //LocalStorage.getToken();
           this.props.navigation.navigate('Main')
         }
         else {

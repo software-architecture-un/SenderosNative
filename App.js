@@ -7,6 +7,7 @@ import MyMap from './src/screens/Map.js'
 import example from './src/screens/DraggableMarkers'
 import header1 from './src/components/MenuHeader'
 import LocalStorage from './src/components/LocalStorage.js'
+import MenuSidebar from './src/components/MenuSidebar.js'
 
  const RootStackWithoutSession = createStackNavigator({
   Home: {
@@ -20,7 +21,10 @@ import LocalStorage from './src/components/LocalStorage.js'
   },
   Main: {
     screen: Main
-  },  
+  },
+  MenuSidebar: {
+    screen: MenuSidebar
+  },
 });
 
 const RootStackWithSession = createStackNavigator({
@@ -36,13 +40,16 @@ const RootStackWithSession = createStackNavigator({
   Signup: {
     screen: Signup
   }, 
+  MenuSidebar: {
+    screen: MenuSidebar
+  },
 }); 
 
-// var obtainedJWT = LocalStorage.getToken().then(function(value){
-//   alert(value);
+LocalStorage.getToken().then(function(value){
+  alert(value);
 
-//   return value;
-// })
+  //return value;
+})
 
 //   alert(obtainedJWT);
 

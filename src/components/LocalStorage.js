@@ -31,8 +31,8 @@ export default class LocalStorage extends Component {
     
       static async resetToken() {
         try {
-          await AsyncStorage.removeItem('@jwt');
-          const value = await AsyncStorage.getItem('jwt');
+          await AsyncStorage.removeItem('jwt');
+          //const value = await AsyncStorage.getItem('jwt');
           // this.setState({myKey: value});
         } catch (error) {
           console.log("Error resetting data" + error);
