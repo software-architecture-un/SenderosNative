@@ -5,14 +5,15 @@ import Login from './src/screens/Login.js'
 import Signup from './src/screens/Signup.js'
 import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
-import example from './src/screens/DraggableMarkers'
+import imputMap from './src/screens/InputMap'
+import myMaps from './src/screens/MyPlaces'
 import header1 from './src/components/MenuHeader'
 import MenuSidebar from './src/components/MenuSidebar.js'
 import MainMenu from './src/screens/MainMenu.js'
 
 const RootStack = createStackNavigator({
   Initial: {
-    screen: Initial
+    screen: myMaps
   }, 
   Home: {
     screen: Home

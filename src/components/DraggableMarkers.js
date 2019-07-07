@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
-import PriceMarker from '../components/PriceMarker';
+import PriceMarker from './PriceMarker';
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,23 +13,18 @@ const LATITUDE_DELTA = 0.025; //0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const SPACE = 0.00001;
 
-function log(eventName, e) {
-  console.log(eventName, e.nativeEvent);
-}
+
 
 class MarkerTypes extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      a: {
-        latitude: LATITUDE + SPACE,
-        longitude: LONGITUDE + SPACE,
-      },
-      b: {
-        latitude: LATITUDE - SPACE,
-        longitude: LONGITUDE - SPACE,
-      },
+      initial: {
+        latitude: LATITUDE ,
+        longitude: LONGITUDE,
+      }
+      
     };
   }
 
@@ -47,12 +42,8 @@ class MarkerTypes extends React.Component {
           }}
         >
           <Marker
-            coordinate={this.state.a}
-            onSelect={e => log('onSelect', e)}
-            onDrag={e => log('onDrag', e)}
-            onDragStart={e => log('onDragStart', e)}
-            onDragEnd={e => log('onDragEnd', e)}
-            onPress={e => log('onPress', e)}
+            coordinate={this.state.initial}
+            onDragEnd={e => this.setState({e})}
             draggable
           >
           </Marker>
