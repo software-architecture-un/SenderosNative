@@ -9,6 +9,7 @@ import example from './src/screens/DraggableMarkers'
 import header1 from './src/components/MenuHeader'
 import MenuSidebar from './src/components/MenuSidebar.js'
 import MainMenu from './src/screens/MainMenu.js'
+import VistaPrueba1 from './src/screens/VistaPrueba1.js'
 
 const RootStack = createStackNavigator({
   Initial: {
@@ -32,6 +33,9 @@ const RootStack = createStackNavigator({
   MainMenu: {
     screen: MainMenu
   },
+  VistaPrueba1: {
+    screen: VistaPrueba1
+  }
 }); 
 
 let App = createAppContainer(RootStack);

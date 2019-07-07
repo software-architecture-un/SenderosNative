@@ -32,11 +32,43 @@ export default class Home extends Component {
         this.props.navigation.navigate('Home');
     }
 
+    Vista1Funcion = async () => {
+        this.closeDrawer.bind(this)
+    }
+
+    Vista2Funcion = async () => {
+        this.openDrawer.bind(this)
+    }
+
     renderDrawer() {
         //SlideMenu
         return (
             <View style={styles.menuContainer}>
-                <FlatList
+                <TouchableOpacity style={styles.menuTitleContainer}
+                    onPress={this.Vista1Funcion}
+                >
+                    <Text style={styles.menuTitle}>
+                        VIsta 1
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.menuTitleContainer}
+                    onPress={() => this.props.navigation.navigate('VistaPrueba1')}
+                >
+                    <Text style={styles.menuTitle}>
+                        VIsta 2
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.menuTitleContainer}
+                    onPress={this.Logout}
+                >
+                    <Text style={styles.menuTitle}>
+                        Cerrar sesión
+                    </Text>
+                </TouchableOpacity>
+
+                {/* <FlatList
                     style={{ flex: 1.0 }}
                     data={menu}
                     extraData={this.state}
@@ -51,7 +83,7 @@ export default class Home extends Component {
                                 </Text>
                             </TouchableOpacity>
                         )
-                    }} />
+                    }} /> */}
             </View>
         )
     }
