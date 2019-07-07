@@ -21,9 +21,6 @@ export default class Login extends Component {
         <Text style={styles.welcome}>SENDEROS</Text>
         <Text style={styles.welcome}>UN</Text>
 
-        {/* <Text style={styles.labelField}>State paila</Text>
-        <Text style={styles.labelField}>{this.state.pruebaToken}</Text> */}
-
         <Text style={styles.labelField}>Correo electrónico</Text>
         <TextInput
           style={styles.input}
@@ -96,7 +93,6 @@ export default class Login extends Component {
 
           //LocalStorage.getToken();
           this.props.navigation.navigate('Main')
-          //this.props.navigation.navigate('MenuSidebar')
         }
         else {
           alert("Correo electrónico o contraseña incorrectos")

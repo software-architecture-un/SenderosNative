@@ -6,15 +6,23 @@ export default class Home extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props);
+
+    console.log("Los props de home: ", super(props))
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Senderos</Text>
+
+        <Text style={styles.welcome}>SENDEROS</Text>
 
         <Text style={styles.welcome}>UN</Text>
 
         <TouchableOpacity 
           style={styles.btnLogin}
+          
           onPress={() => this.props.navigation.navigate('Login')}
         >
           <Text style={styles.btnEnterText}>Iniciar sesión</Text>

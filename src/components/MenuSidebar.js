@@ -14,9 +14,31 @@ export default class MenuSidebar extends Component {
         super(props);
       }
 
+    async componentWillMount() {
+        console.log("Will Mount")
+
+        this.setState({myToken: await LocalStorage.getToken()})
+
+        console.log("Token guardado aquí: ", this.state.myToken)
+    }
+    
+    async Logout() {
+        // LocalStorage.resetToken().then(
+        //     res => {
+        //         this.props.navigation.navigate('Home');
+        //       }
+        // )
+        // .catch((error)=>{
+        //     console.log(error.message)
+        //   });
+
+        await LocalStorage.resetToken();
+    }
+
     render() {
         return (
             <Content style={{ backgroundColor: "#ffffff" }}>
+            {console.log("Render")}
                 <ListItem icon>
                     <Left>
                         <Button style={{ backgroundColor: "#FF9501" }}>
@@ -50,8 +72,7 @@ export default class MenuSidebar extends Component {
 
                 <ListItem icon>
                     <Left>
-                        <Button style={{ backgroundColor: "#FF9501" }}
-                            onPress={this._logout}>
+                        <Button style={{ backgroundColor: "#FF9501" }}>
                             <Icon active name="map-signs" />
                         </Button>
                     </Left>
@@ -63,13 +84,4 @@ export default class MenuSidebar extends Component {
         )
     };
 
-    _logout = async () => {
-        LocalStorage.resetToken()
-      .then(res => {
-        this.props.navigation.navigate('Main');
-      }) 
-      .catch((error)=>{
-        alert(error.message)
-      });
-    }
 }

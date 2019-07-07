@@ -13,7 +13,7 @@ export default class Main extends Component {
     return (
        
         <Container>
-           <MenuHeader/>
+           <MenuHeader props={this.props}/>
           <Text>
             Main page
           </Text>
