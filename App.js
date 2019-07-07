@@ -8,6 +8,7 @@ import MyMap from './src/screens/Map.js'
 import example from './src/screens/DraggableMarkers'
 import header1 from './src/components/MenuHeader'
 import MenuSidebar from './src/components/MenuSidebar.js'
+import MainMenu from './src/screens/MainMenu.js'
 
 const RootStack = createStackNavigator({
   Initial: {
@@ -27,6 +28,9 @@ const RootStack = createStackNavigator({
   }, 
   MenuSidebar: {
     screen: MenuSidebar
+  },
+  MainMenu: {
+    screen: MainMenu
   },
 }); 
 

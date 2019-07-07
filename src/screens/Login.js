@@ -88,11 +88,13 @@ export default class Login extends Component {
         }
         else if(res.data.signIn !== null) {
           LocalStorage.saveToken(JSON.stringify(res.data.signIn.content));
+          LocalStorage.saveEmail(this.state.email);
 
           //this.setState({pruebaToken: res.data.signIn.content});
 
           //LocalStorage.getToken();
-          this.props.navigation.navigate('Main')
+          this.props.navigation.navigate('MainMenu')
+          //this.props.navigation.navigate('Main')
         }
         else {
           alert("Correo electrónico o contraseña incorrectos")

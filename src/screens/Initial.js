@@ -1,5 +1,5 @@
 import Home from '../screens/Home.js'
-import Main from '../screens/Main.js'
+import MainMenu from '../screens/MainMenu.js'
 import LocalStorage from '../components/LocalStorage.js'
 import React, {Component} from 'react';
 import {View} from 'react-native';
@@ -24,13 +24,16 @@ export default class Initial extends Component {
     this.setState({isValid: tokenObtained})
 
     if(this.state.isValid === "Valid") {
-      this.setState({firstView: 'Main'})
+      this.setState({firstView: 'MainMenu'})
+      //this.setState({firstView: 'Main'})
     }
     else {
       this.setState({firstView: 'Home'})
     }
 
     this.props.navigation.navigate(this.state.firstView);
+
+    //this.props.navigation.navigate('Home');
   }
 
   render() {

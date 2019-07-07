@@ -38,7 +38,6 @@ export default class LocalStorage extends Component {
           console.log("Error resetting data" + error);
         }
       }
-
       
       static async validateToken() {
         
@@ -57,8 +56,6 @@ export default class LocalStorage extends Component {
             }
           }
             `;
-
-           
             
             const opts = {
                 method: "POST",
@@ -76,10 +73,38 @@ export default class LocalStorage extends Component {
           else {
             return "No valid";
           }
-      }   
-            
-          
+      }  
 
+      static async getEmail() {
+        try {
+          console.log("Buscando el email en storage");
+          const value = await AsyncStorage.getItem('email');
+        
+          return value;
+        } catch (error) {
+          console.log("Error retrieving data" + error);
+        }
+      }
+    
+      static async saveEmail(value) {
+        try {
+          console.log('Guardando el email');
+          console.log(value);
+          await AsyncStorage.setItem('email', value);
+        } catch (error) {
+          console.log("Error saving data" + error);
+        }
+      }
+    
+      static async resetEmail() {
+        try {
+          await AsyncStorage.removeItem('email');
+          //const value = await AsyncStorage.getItem('jwt');
+          // this.setState({myKey: value});
+        } catch (error) {
+          console.log("Error resetting data" + error);
+        }
+      }
 
       render() {
         return null
