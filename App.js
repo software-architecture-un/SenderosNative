@@ -9,7 +9,7 @@ import header1 from './src/components/MenuHeader'
 import LocalStorage from './src/components/LocalStorage.js'
 import MenuSidebar from './src/components/MenuSidebar.js'
 import React, {Component} from 'react';
-import {TextInput, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {TextInput, StyleSheet, Text, View } from 'react-native';
 
 export default class App extends Component {
 
@@ -20,43 +20,26 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {isValid:""}
-
-    //this._validateToken()
   }
 
   async componentDidMount() {  
-    const response = await LocalStorage.validateToken(this.state.token);  // it will wait here untill function a finishes
-
-    console.log("Validación desde App.js: ", response); // after function a finished, this function will calls
+   
+    LocalStorage.validateToken()
+    .then(response => {
+      this.setState({isValid: response})
+      console.log("Validación desde App.js: ", response);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
   }
 
   render() {
     return (
       <View>
-        {/* <TouchableOpacity 
-          onPress={this._validateToken}
-        >
-          <Text>Oprima</Text>
-        </TouchableOpacity> */}
-
         <Text>Estado del token: {this.state.isValid}</Text>
       </View>
       );
-    }
-
-    async _validateToken() {
-      const response = await LocalStorage.validateToken(this.state.token)
-      console.log("Validación desde App.js: ", response)
-
-    //   LocalStorage.validateToken(this.state.token)
-    //   .then(value => {
-    //     this.setState({isValid: value});
-
-    //     console.log("Validación desde App.js: ", value)
-    //   })
-    //   .catch((error)=>{
-    //       alert(error.message)
-    //     });
     }
 }
 
@@ -96,12 +79,6 @@ export default class App extends Component {
 //   },
 // }); 
 
-// LocalStorage.getToken().then(function(value){
-//   //alert(value);
-
-//   //return value;
-// })
-
 // //   if(obtainedJWT === null || obtainedJWT === '') {
 // //     RootStack = RootStackWithoutSession;
 // //   }
@@ -114,5 +91,3 @@ export default class App extends Component {
 // let App = createAppContainer(RootStack);
 
 // export default App;
-
-  

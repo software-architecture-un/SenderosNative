@@ -39,12 +39,12 @@ export default class LocalStorage extends Component {
         }
       }
 
+      
       static async validateToken() {
-        var token = await this.getToken()
-        //.then(value => {
-          //this.setState({token: token});     
-          console.log("Token en validate: ", token)
-
+        
+        const url = GraphQLIP;
+        const token = await this.getToken();    
+          console.log("Token en validate: ", token);
           const query = `
           mutation {
             verifyToken(jwt: 
@@ -58,7 +58,7 @@ export default class LocalStorage extends Component {
           }
             `;
 
-            const url = GraphQLIP;
+           
             
             const opts = {
                 method: "POST",
@@ -66,23 +66,20 @@ export default class LocalStorage extends Component {
                 body: JSON.stringify({ query })
             };
 
-            fetch(url, opts)
-            .then(value => value.json())
-            .then(value => {
-              if(value.data.verifyToken !== null) {
-                console.log("Voy a enviar: ", value.data.verifyToken.content)
-                return value.data.verifyToken.content;
-              }
-              else {
-                return "No valid";
-              }
-            }) 
-            .catch((error)=>{
-              alert(error.message)
-            });
+            let response = await fetch(url, opts)
+             response = await response.json()
+            
+          if(response.data.verifyToken !== null) {
+            console.log("Voy a enviar: ", response.data.verifyToken.content)
+            return response.data.verifyToken.content;
           }
-        //)
-      //}
+          else {
+            return "No valid";
+          }
+      }   
+            
+          
+
 
       render() {
         return null
