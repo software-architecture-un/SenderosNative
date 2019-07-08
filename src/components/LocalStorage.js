@@ -106,6 +106,43 @@ export default class LocalStorage extends Component {
         }
       }
 
+      static async getId() {
+        try {
+          console.log("Buscando el id en storage");
+          const value = await AsyncStorage.getItem('id');
+
+          console.log("Obtuve el ID: ", value);
+        
+          return value;
+        } catch (error) {
+          console.log("Error retrieving data" + error);
+        }
+      }
+    
+      static async saveId(value) {
+        try {
+          console.log('Guardando el id');
+          console.log(value);
+          await AsyncStorage.setItem('id', value);
+
+          var storeId = await this.getId(value);
+          console.log("Estoy guardando el it el ID: ", storeId)
+
+        } catch (error) {
+          console.log("Error saving data" + error);
+        }
+      }
+    
+      static async resetId() {
+        try {
+          await AsyncStorage.removeItem('id');
+          //const value = await AsyncStorage.getItem('jwt');
+          // this.setState({myKey: value});
+        } catch (error) {
+          console.log("Error resetting data" + error);
+        }
+      }
+
       render() {
         return null
       }

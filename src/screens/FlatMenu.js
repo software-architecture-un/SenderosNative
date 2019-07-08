@@ -25,6 +25,7 @@ export default class FlatMeu extends Component {
   _logout = async () => {
     await LocalStorage.resetToken();
     await LocalStorage.resetEmail();
+    await LocalStorage.resetId();
     
     this.props.navigation.navigate('Home');
 }
@@ -122,25 +123,34 @@ export default class FlatMeu extends Component {
           body: JSON.stringify({ query })
       };
   
-      fetch(url, opts)
-      .then(res => res.json())
-      .then(res => {
-        if(res.data.userByEmail !== null) {
-          console.log(res.data.userByEmail.content)
+      let res = await fetch(url, opts);
+      //.then(res => res.json())
+      res = await res.json()
 
-          this.setState({id: res.data.userByEmail.content.id});
-          this.setState({name: res.data.userByEmail.content.name});
-          this.setState({document: res.data.userByEmail.content.document});
-          this.setState({age: res.data.userByEmail.content.age});
-          this.setState({email: res.data.userByEmail.content.email});
-        }
-        else {
-          console.log("El usuario no existe o se trajo mal")
-        } 
-      }) 
-      .catch((error)=>{
-        alert(error.message)
-      });
+      if(res.data.userByEmail !== null) {
+        console.log(res.data.userByEmail.content)
+
+        this.setState({id: (res.data.userByEmail.content.id).toString()});
+        this.setState({name: res.data.userByEmail.content.name});
+        this.setState({document: res.data.userByEmail.content.document});
+        this.setState({age: res.data.userByEmail.content.age});
+        this.setState({email: res.data.userByEmail.content.email});
+      }
+      else {
+        console.log("El usuario no existe o se trajo mal")
+      } 
+
+      await LocalStorage.saveId(this.state.id);
+
+      var x = await LocalStorage.getId();
+      console.log("Obtuve el ID: ", x)
+
+      // .then(res => {
+        
+      // }) 
+      // .catch((error)=>{
+      //   alert(error.message)
+      // });
   }
 }
 
