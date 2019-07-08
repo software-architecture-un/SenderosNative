@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, TextInput, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions, TextInput, TouchableOpacity, Text } from 'react-native';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 import GraphQLIP from '../connection/GraphQLIP.js';
 import LocalStorage from '../components/LocalStorage.js';
@@ -34,13 +34,24 @@ class InputMap extends React.Component {
         };
     }
 
+    static navigationOptions = {
+        headerStyle: {
+            backgroundColor: '#2B303A',
+            borderBottomColor: '#2B303A',
+            borderBottomWidth: 0,
+          },
+      };
+
     async componentWillMount(){
         this.setState({idUser: await LocalStorage.getId()})
     }
 
     render() {
         return (
-            <View>
+            <ScrollView style={styles.container}>
+                <Text style={styles.welcome}>Crear lugar</Text>
+
+                <View style={styles.outMaps}>
                 <MapView
                     provider={this.props.provider}
                     style={styles.map}
@@ -58,26 +69,35 @@ class InputMap extends React.Component {
                     >
                     </Marker>
                 </MapView>
+                </View>
                 <View>
+
+                <Text style={styles.labelField}>Nombre</Text>
                 <TextInput
+                    style={styles.input}
                     placeholder="Ingrese el nombre del lugar"
                     onChangeText={(name) => this.setState({name: name })}
                     value={this.state.name}
                     autoCapitalize="none"
                 />
+
+                <Text style={styles.labelField}>Descripción</Text>
                 <TextInput
+                    style={styles.inputDescription}
                     placeholder="Ingrese la descripcion del lugar"
                     onChangeText={(description) => this.setState({ description:  description})}
                     value={this.state.description}
                     autoCapitalize="none"
                 />
-                <TouchableOpacity 
+
+                <TouchableOpacity
+                    style={styles.btnEnter}
                     onPress={this.safePlace}
                 >
-                    <Text>Guardar</Text>
+                    <Text style={styles.btnEnterText}>Guardar</Text>
                 </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
            
         );
     }
@@ -141,15 +161,84 @@ InputMap.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        
-    },
-    map: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        height: 400,
-        width: 400,
-    },
+        backgroundColor: '#2B303A',
+        fontFamily: 'sans-serif',
+      },
+      welcome: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: '#D64933',
+        textAlign: 'center',
+        marginTop: 0,
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+      },
+      dataField: {
+        fontSize: 25,
+        color: '#92DCE5',
+        textAlign: 'center',
+        marginTop: 0,
+        marginBottom: 10,
+      },
+
+  labelField: {
+    fontSize: 20,
+    color: '#D64933',
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 0,
+  },
+  input: {
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 15,
+    padding: 5,
+    fontSize: 20,
+    backgroundColor: '#FFFFFF',
+  },
+  inputDescription: {
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 15,
+    padding: 5,
+    fontSize: 20,
+    backgroundColor: '#FFFFFF',
+    height: 300,
+  },
+  btnEnter: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 30,
+    marginLeft: 40,
+    marginRight: 40,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: "#92DCE5",
+    color: '#2B303A',
+  },
+  btnEnterText: {
+    fontSize: 20,
+    color: '#2B303A',
+  },
+      outMaps: {
+          borderWidth: 4,
+          marginVertical: 0,
+          marginLeft: 10,
+          marginRight: 10,
+          borderStyle: 'solid',
+          borderColor: '#92DCE5',
+      },
+      map: {
+        height: 350,
+      },
 });
 
 export default InputMap

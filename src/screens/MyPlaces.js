@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Text, View } from 'react-native';
 import GraphQLIP from '../connection/GraphQLIP.js';
 import MapView, { Marker } from 'react-native-maps';
 import LocalStorage from '../components/LocalStorage.js';
@@ -14,16 +14,17 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 class MyPlaces extends React.Component {
 
     static navigationOptions = {
-        //header: null
-    };
+        headerStyle: {
+            backgroundColor: '#2B303A',
+            borderBottomColor: '#2B303A',
+            borderBottomWidth: 0,
+          },
+      };
 
     constructor(props) {
         super(props);
         this.state = { mymaps: [] }
     }
-
-
-
 
     async componentWillMount() {
 
@@ -45,7 +46,6 @@ class MyPlaces extends React.Component {
               status
             }
           }
-        
           `;
 
         let opts = {
@@ -75,18 +75,23 @@ class MyPlaces extends React.Component {
                         let title = myMaps[index].name;
                         let description = myMaps[index].description;
                         mapArray.push(
-                            <MapView
-                                liteMode
-                                key={`map_${myMaps._id}`}
-                                style={styles.map}
-                                initialRegion={region}
-                            >
+                            <View style={styles.outMaps}>
+                                <Text style={styles.dataField}>{title}</Text>
+
+                                <MapView
+                                    liteMode
+                                    key={`map_${myMaps._id}`}
+                                    style={styles.map}
+                                    initialRegion={region}
+                                >
                                 <Marker
                                     coordinate={cood}
                                     title={title}
                                     description={description}
                                 ></Marker>
-                            </MapView>
+                                </MapView>
+                            </View>
+                            
                         );
 
                     }
@@ -104,19 +109,50 @@ class MyPlaces extends React.Component {
     }
     render() {
         return (
-            <ScrollView style={StyleSheet.absoluteFillObject}>{this.state.mymaps}</ScrollView>
+            <ScrollView style={styles.container}>
+
+                <Text style={styles.welcome}>Lugares</Text>
+
+                {this.state.mymaps}
+            </ScrollView>
         );
-
     }
-
-
-
 }
 
 const styles = StyleSheet.create({
-    map: {
-        height: 200,
-        marginVertical: 50,
-    },
+    container: {
+        backgroundColor: '#2B303A',
+        fontFamily: 'sans-serif',
+      },
+      welcome: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: '#D64933',
+        textAlign: 'center',
+        marginTop: 10,
+        marginBottom: 0,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+      },
+      dataField: {
+        fontSize: 25,
+        color: '#92DCE5',
+        textAlign: 'center',
+        marginTop: 5,
+        marginBottom: 10,
+      },
+      outMaps: {
+          borderWidth: 4,
+          marginVertical: 10,
+          marginLeft: 10,
+          marginRight: 10,
+          borderStyle: 'solid',
+          borderColor: '#92DCE5',
+      },
+      map: {
+        height: 300,
+      },
 });
+
 export default MyPlaces;
