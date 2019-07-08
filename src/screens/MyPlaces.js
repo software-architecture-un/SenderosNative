@@ -13,7 +13,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 class MyPlaces extends React.Component {
 
     static navigationOptions = {
-        header: null
+        //header: null
     };
 
     constructor(props) {

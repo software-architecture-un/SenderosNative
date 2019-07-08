@@ -19,7 +19,7 @@ export default class FlatMeu extends Component {
     var storeEmail = await LocalStorage.getEmail();
     this.setState({keepEmail: storeEmail});
 
-    await this._userById();
+    await this._userByEmail();
   }
 
   _logout = async () => {
@@ -43,21 +43,21 @@ export default class FlatMeu extends Component {
 
         <TouchableOpacity 
           style={styles.btnNormal}
-          onPress={this._signup}
+          onPress={() => this.props.navigation.navigate('UserData')}
         >
           <Text style={styles.btnEnterText}>Datos personales</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.btnNormal}
-          onPress={this._signup}
+          onPress={() => this.props.navigation.navigate('InputMap')}
         >
           <Text style={styles.btnEnterText}>Crear lugar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.btnNormal}
-          onPress={this._signup}
+          onPress={() => this.props.navigation.navigate('MyPlaces')}
         >
           <Text style={styles.btnEnterText}>Lugares</Text>
         </TouchableOpacity>
@@ -94,7 +94,7 @@ export default class FlatMeu extends Component {
     );
   }
 
-  _userById = async () => {
+  _userByEmail = async () => {
     const query = `
     mutation {
         userByEmail(email: 
@@ -124,7 +124,6 @@ export default class FlatMeu extends Component {
       };
   
       let res = await fetch(url, opts);
-      //.then(res => res.json())
       res = await res.json()
 
       if(res.data.userByEmail !== null) {
@@ -144,13 +143,6 @@ export default class FlatMeu extends Component {
 
       var x = await LocalStorage.getId();
       console.log("Obtuve el ID: ", x)
-
-      // .then(res => {
-        
-      // }) 
-      // .catch((error)=>{
-      //   alert(error.message)
-      // });
   }
 }
 
