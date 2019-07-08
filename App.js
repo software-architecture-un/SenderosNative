@@ -7,14 +7,13 @@ import Main from './src/screens/Main.js'
 import MyMap from './src/screens/Map.js'
 import imputMap from './src/screens/InputMap'
 import myMaps from './src/screens/MyPlaces'
+import FlatMenu from './src/screens/FlatMenu.js'
 import header1 from './src/components/MenuHeader'
 import MenuSidebar from './src/components/MenuSidebar.js'
-import MainMenu from './src/screens/MainMenu.js'
-import VistaPrueba1 from './src/screens/VistaPrueba1.js'
 
 const RootStack = createStackNavigator({
   Initial: {
-    screen: myMaps
+    screen: Initial
   }, 
   Home: {
     screen: Home
@@ -28,15 +27,9 @@ const RootStack = createStackNavigator({
   Signup: {
     screen: Signup
   }, 
-  MenuSidebar: {
-    screen: MenuSidebar
+  FlatMenu: {
+    screen: FlatMenu
   },
-  MainMenu: {
-    screen: MainMenu
-  },
-  VistaPrueba1: {
-    screen: VistaPrueba1
-  }
 }); 
 
 let App = createAppContainer(RootStack);

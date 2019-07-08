@@ -93,8 +93,7 @@ export default class Login extends Component {
           //this.setState({pruebaToken: res.data.signIn.content});
 
           //LocalStorage.getToken();
-          this.props.navigation.navigate('MainMenu')
-          //this.props.navigation.navigate('Main')
+          this.props.navigation.navigate('FlatMenu')
         }
         else {
           alert("Correo electrónico o contraseña incorrectos")

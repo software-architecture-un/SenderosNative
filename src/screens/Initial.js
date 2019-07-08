@@ -24,8 +24,7 @@ export default class Initial extends Component {
     this.setState({isValid: tokenObtained})
 
     if(this.state.isValid === "Valid") {
-      this.setState({firstView: 'MainMenu'})
-      //this.setState({firstView: 'Main'})
+      this.setState({firstView: 'FlatMenu'})
     }
     else {
       this.setState({firstView: 'Home'})

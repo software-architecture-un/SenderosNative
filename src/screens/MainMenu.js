@@ -4,7 +4,9 @@ import { Platform, StyleSheet, Text,
     Image, SafeAreaView } from 'react-native';
 import ic_menu from '../images/list.png'
 import Drawer from 'react-native-drawer'
-import LocalStorage from '../components/LocalStorage.js'
+import LocalStorage from '../components/LocalStorage'
+import RenderDrawer from '../components/RenderDrawer';
+
 console.disableYellowBox = true;
 
 const menu = [
@@ -43,48 +45,7 @@ export default class Home extends Component {
     renderDrawer() {
         //SlideMenu
         return (
-            <View style={styles.menuContainer}>
-                <TouchableOpacity style={styles.menuTitleContainer}
-                    onPress={this.Vista1Funcion}
-                >
-                    <Text style={styles.menuTitle}>
-                        VIsta 1
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.menuTitleContainer}
-                    onPress={() => this.props.navigation.navigate('VistaPrueba1')}
-                >
-                    <Text style={styles.menuTitle}>
-                        VIsta 2
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.menuTitleContainer}
-                    onPress={this.Logout}
-                >
-                    <Text style={styles.menuTitle}>
-                        Cerrar sesión
-                    </Text>
-                </TouchableOpacity>
-
-                {/* <FlatList
-                    style={{ flex: 1.0 }}
-                    data={menu}
-                    extraData={this.state}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <TouchableOpacity style={styles.menuTitleContainer}
-                                onPress={this.Logout}
-                            >
-                                <Text style={styles.menuTitle}
-                                    key={index}>
-                                    {item.title}
-                                </Text>
-                            </TouchableOpacity>
-                        )
-                    }} /> */}
-            </View>
+            <RenderDrawer/>
         )
     }
 
