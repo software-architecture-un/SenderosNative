@@ -64,9 +64,9 @@ export default class FlatMeu extends Component {
 
         <TouchableOpacity 
           style={styles.btnNormal}
-          onPress={this._signup}
+          onPress={() => this.props.navigation.navigate('InputList')}
         >
-          <Text style={styles.btnEnterText}>Crear ruta</Text>
+          <Text style={styles.btnEnterText}>Crear Lista</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -78,9 +78,9 @@ export default class FlatMeu extends Component {
 
         <TouchableOpacity 
           style={styles.btnNormal}
-          onPress={this._signup}
+          onPress={() => this.props.navigation.navigate('ViewAllMyLists')}
         >
-          <Text style={styles.btnEnterText}>Rutas</Text>
+          <Text style={styles.btnEnterText}>Listas</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 

@@ -23,7 +23,7 @@ class MyPlaces extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { mymaps: [] }
+        this.state = { mymaps: []}
     }
 
     async componentWillMount() {

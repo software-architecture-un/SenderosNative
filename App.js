@@ -10,7 +10,9 @@ import InputMap from './src/screens/InputMap'
 import MyPlaces from './src/screens/MyPlaces'
 import FlatMenu from './src/screens/FlatMenu.js'
 import header1 from './src/components/MenuHeader'
-import MenuSidebar from './src/components/MenuSidebar.js'
+import ViewAllMyLists from './src/screens/ViewAllMyLists.js'
+import ViewList from './src/screens/ViewList.js'
+import InputList from './src/screens/InputList.js'
 
 const RootStack = createStackNavigator({
   Initial: {
@@ -39,7 +41,17 @@ const RootStack = createStackNavigator({
   },
   MyPlaces: {
     screen: MyPlaces
+  },
+  InputList: {
+    screen: InputList
+  },
+  ViewAllMyLists: {
+    screen: ViewAllMyLists
+  },
+  ViewList: {
+    screen : ViewList
   }
+
 }); 
 
 let App = createAppContainer(RootStack);
