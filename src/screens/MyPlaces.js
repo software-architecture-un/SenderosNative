@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import GraphQLIP from '../connection/GraphQLIP.js';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
+import LocalStorage from '../components/LocalStorage.js';
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,11 +22,17 @@ class MyPlaces extends React.Component {
         this.state = { mymaps: [] }
     }
 
-    componentWillMount() {
+
+
+
+    async componentWillMount() {
+
         let url = GraphQLIP;
+        let userId = await LocalStorage.getId();
+
         let query = `
         query {
-            scoreresourceByuser(user_id: 1) {
+            scoreresourceByuser(user_id: ${userId}) {
               content {
                 _id
                 name
@@ -40,6 +47,7 @@ class MyPlaces extends React.Component {
           }
         
           `;
+
         let opts = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -47,6 +55,7 @@ class MyPlaces extends React.Component {
         };
         fetch(url, opts)
             .then(response => response.json())
+
             .then(response => {
                 console.log(response)
                 if (response.data.scoreresourceByuser.status === 200) {
@@ -72,12 +81,12 @@ class MyPlaces extends React.Component {
                                 style={styles.map}
                                 initialRegion={region}
                             >
-                                <Marker 
+                                <Marker
                                     coordinate={cood}
-                                    title= {title}
+                                    title={title}
                                     description={description}
                                 ></Marker>
-                        </MapView>
+                            </MapView>
                         );
 
                     }

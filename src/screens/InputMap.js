@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, TextInput, TouchableOpacity, Text } from 'react-native';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 import GraphQLIP from '../connection/GraphQLIP.js';
+import LocalStorage from '../components/LocalStorage.js';
 
 
 
@@ -33,6 +34,10 @@ class InputMap extends React.Component {
         };
     }
 
+    async componentWillMount(){
+        this.setState({idUser: await LocalStorage.getId()})
+    }
+
     render() {
         return (
             <View>
@@ -53,6 +58,7 @@ class InputMap extends React.Component {
                     >
                     </Marker>
                 </MapView>
+                <View>
                 <TextInput
                     placeholder="Ingrese el nombre del lugar"
                     onChangeText={(name) => this.setState({name: name })}
@@ -70,6 +76,7 @@ class InputMap extends React.Component {
                 >
                     <Text>Guardar</Text>
                 </TouchableOpacity>
+                </View>
             </View>
            
         );
@@ -85,7 +92,7 @@ class InputMap extends React.Component {
                   description: "${this.state.description}"
                   latitude: ${this.state.coord.latitude}
                   longitude: ${this.state.coord.longitude}
-                  user_id: 1
+                  user_id: ${this.state.idUser}
                 }
               ) {
                 content {
