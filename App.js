@@ -13,7 +13,9 @@ import header1 from './src/components/MenuHeader'
 import ViewAllMyLists from './src/screens/ViewAllMyLists.js'
 import ViewList from './src/screens/ViewList.js'
 import InputList from './src/screens/InputList.js'
-
+import InputRoute from './src/screens/InputRoute.js'
+import MyRoutes from './src/screens/MyRoutes.js'
+import ViewRoute from './src/screens/ViewRoute.js'
 const RootStack = createStackNavigator({
   Initial: {
     screen: Initial
@@ -50,7 +52,16 @@ const RootStack = createStackNavigator({
   },
   ViewList: {
     screen : ViewList
-  }
+  },
+  InputRoute: {
+    screen: InputRoute
+  },
+  MyRoutes: {
+    screen: MyRoutes
+  },
+  ViewRoute: {
+    screen: ViewRoute
+  },
 
 }); 
 

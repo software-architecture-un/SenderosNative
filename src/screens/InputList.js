@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, ScrollView, View, Text, TextInput, Picker, TouchableOpacity } from 'react-native';
 import GraphQLIP from '../connection/GraphQLIP.js';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 import LocalStorage from '../components/LocalStorage.js';
 
 
