@@ -59,28 +59,35 @@ export default class FlatMeu extends Component {
           style={styles.btnNormal}
           onPress={() => this.props.navigation.navigate('MyPlaces')}
         >
-          <Text style={styles.btnEnterText}>Lugares</Text>
+          <Text style={styles.btnEnterText}>Mis lugares</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.btnNormal}
           onPress={() => this.props.navigation.navigate('InputList')}
         >
-          <Text style={styles.btnEnterText}>Crear Lista</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.btnNormal}
-          onPress={this._signup}
-        >
-          <Text style={styles.btnEnterText}>Borrar ruta</Text>
+          <Text style={styles.btnEnterText}>Crear lista de lugares</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.btnNormal}
           onPress={() => this.props.navigation.navigate('ViewAllMyLists')}
         >
-          <Text style={styles.btnEnterText}>Listas</Text>
+          <Text style={styles.btnEnterText}>Mis listas de lugares</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.btnNormal}
+          onPress={this._signup}
+        >
+          <Text style={styles.btnEnterText}>Crear ruta</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.btnNormal}
+          onPress={this._signup}
+        >
+          <Text style={styles.btnEnterText}>Mis rutas</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 

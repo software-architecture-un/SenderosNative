@@ -111,7 +111,7 @@ class MyPlaces extends React.Component {
         return (
             <ScrollView style={styles.container}>
 
-                <Text style={styles.welcome}>Lugares</Text>
+                <Text style={styles.welcome}>Mis lugares</Text>
 
                 {this.state.mymaps}
             </ScrollView>
