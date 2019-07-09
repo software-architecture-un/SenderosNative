@@ -145,34 +145,23 @@ class ViewList extends Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Text style={styles.labelField}>Tu lista de lugares: </Text>
-                <MapView
-                    style={styles.map}
-                    region={{
-                        latitude: LATITUDE,
-                        longitude: LONGITUDE,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    }}
-                >
-                    {this.state.pinsOfMap}
-                </MapView>
-                <Text style={styles.labelField}>Nombre de la lista </Text>
-                <TextInput
-                    style={styles.input}
-                    editable={false} selectTextOnFocus={false}
-                    value={this.state.nameList}
-                    autoCapitalize="none"
-                />
+                <Text style={styles.welcome}>{this.state.nameList}</Text>
 
-                <Text style={styles.labelField}>Commentarios</Text>
-                <TextInput
-                    style={styles.inputDescription}
-                    editable={false} selectTextOnFocus={false}
-                    value={this.state.descriptionList}
-                    autoCapitalize="none"
+                <View style={styles.outMaps}>
+                    <MapView
+                        style={styles.map}
+                        region={{
+                            latitude: LATITUDE,
+                            longitude: LONGITUDE,
+                            latitudeDelta: LATITUDE_DELTA,
+                            longitudeDelta: LONGITUDE_DELTA,
+                        }}
+                    >
+                        {this.state.pinsOfMap}
+                </MapView> 
+                </View>
 
-                />
+                <Text style={styles.labelFieldDescription}>{this.state.descriptionList}</Text>
 
                 {/* <TouchableOpacity
                     style={styles.btnEnter}
@@ -191,54 +180,34 @@ const styles = StyleSheet.create({
         backgroundColor: '#2B303A',
         fontFamily: 'sans-serif',
     },
+    welcome: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#D64933',
+        textAlign: 'center',
+        marginTop: 20,
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      },
     map: {
-        height: 300,
+        height: 350,
     },
     labelField: {
         fontSize: 20,
-        color: '#D64933',
+        color: '#92DCE5',
         textAlign: 'center',
         marginTop: 10,
         marginBottom: 0,
     },
-    input: {
+    labelFieldDescription: {
+        fontSize: 20,
+        color: '#92DCE5',
         textAlign: 'center',
         marginTop: 10,
-        marginBottom: 20,
         marginLeft: 20,
         marginRight: 20,
-        borderRadius: 15,
-        padding: 5,
-        fontSize: 20,
-        backgroundColor: '#FFFFFF',
-    },
-    inputDescription: {
-        textAlign: 'center',
-        marginTop: 10,
-        marginBottom: 20,
-        marginLeft: 20,
-        marginRight: 20,
-        borderRadius: 15,
-        padding: 5,
-        fontSize: 20,
-        backgroundColor: '#FFFFFF',
-        height: 300,
-    },
-    btnEnter: {
-        alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 30,
-        marginLeft: 40,
-        marginRight: 40,
-        borderRadius: 15,
-        padding: 5,
-        backgroundColor: "#92DCE5",
-        color: '#2B303A',
-    },
-    btnEnterText: {
-        fontSize: 20,
-        // color: '#2B303A',
-        paddingBottom: 20,
+        marginBottom: 0,
     },
     outMaps: {
         borderWidth: 4,
