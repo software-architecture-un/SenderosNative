@@ -53,23 +53,24 @@ class ViewAllMyLists extends Component {
                     for (let index = 0; index < myLists.length; index++) {
                         let id = myLists[index].id
                         lists.push(
-                            <Card>
-                                <CardItem
-                                    header
-                                    bordered
-                                    button
+                            <TouchableOpacity style={styles.cardStyle}
+                            button
                                     onPress={
                                         () => this.props.navigation.navigate('ViewList', { id })
                                     }>
-                                    <Text>{myLists[index].name}</Text>
+                                <CardItem
+                                    style={styles.cardItemStyle}
+                                    header
+                                    >
+                                    <Text style={styles.titleStyle}>{myLists[index].name}</Text>
                                 </CardItem>
-                                <CardItem bordered>
-                                    <Body>
-                                        <Text>{myLists[index].comment}</Text>
-                                        
-                                    </Body>
+                                <CardItem 
+                                    style={styles.cardItemStyle}
+                                    >
+                                    
+                                    <Text style={styles.descriptionStyle}>{myLists[index].comment}</Text>
                                 </CardItem>
-                            </Card>
+                            </TouchableOpacity>
                         );
                     }
                     this.setState({ myLists: lists });
@@ -86,6 +87,8 @@ class ViewAllMyLists extends Component {
     render() {
         return (
             <ScrollView style={styles.container}>
+                <Text style={styles.welcome}>Mis listas de lugares</Text>
+
                 {this.state.myLists}
             </ScrollView>
         )
@@ -96,7 +99,49 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#2B303A',
         fontFamily: 'sans-serif',
-    },
+      },
+      welcome: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#D64933',
+        textAlign: 'center',
+        marginTop: 20,
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      },
+      cardStyle: {
+        height: 150,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 0,
+        marginBottom: 15,
+        marginLeft: 10,
+        marginRight: 10,
+        borderRadius: 0,
+        borderWidth: 6,
+        borderStyle: 'solid',
+        borderColor: '#92DCE5',
+        backgroundColor: 'transparent'
+      },
+      cardItemStyle: {
+        backgroundColor: "transparent",
+      },
+      titleStyle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#92DCE5',
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+      },
+      descriptionStyle: {
+        fontSize: 15,
+        color: '#92DCE5',
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
 });
 
 
